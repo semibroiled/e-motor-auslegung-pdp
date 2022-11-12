@@ -26,7 +26,7 @@ def resistive_inertia(v_top, t_end, t_init =0, v_init = 0, m_car = 2200):
 def resistive_gradient (alpha_s, g=9.81, m_car=2200):
     '''Insert Description here'''
     try:
-        f_s = m_car * g * np.sin(alpha)
+        f_s = m_car * g * np.sin(alpha_s)
         return f_s
     except ValueError as ve:
         print(ve)
@@ -74,4 +74,3 @@ def resistive_drag(rho, c_d, frontal_area, v_car = 10):
 
 if __name__ == '__main__':
     print('Startint script...')
-    
