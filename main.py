@@ -66,17 +66,17 @@ def resistive_friction(alpha_s, c_rr, g=9.81,m=2200):
     return f_r
 
 #Calculate the air drag acting on car
-def resistive_drag(rho, c_d, frontal_area, v_car = 10):
+def resistive_drag(rho, c_d, frontal_area, v_wind, v_car = 10):
     '''Insert misc'''
     user_input = input('Do you want to calculate top speed? Enter to skip')
     if user_input:
         try:
             v_car_top = 30
-            f_a = 0.5 * rho * c_d * frontal_area * v_car_top
+            f_a = 0.5 * rho * c_d * frontal_area * ((v_car_top-v_wind)**2)
         except ValueError as ve:
             print(ve)
     else:
-        f_a = 0.5 * rho * c_d * frontal_area * v_car
+        f_a = 0.5 * rho * c_d * frontal_area * ((v_car-v_wind)**2)
     
     return f_a
 
@@ -89,7 +89,7 @@ def total_resistive_force(f_inertia, f_friction, f_wind, f_slope = 0):
 
 
 if __name__ == '__main__':
-    i = 5 #Zeitverzog
+    i = 2 #Zeitverzog
     print('Starting script...')
     time.sleep(i)
     
@@ -113,11 +113,28 @@ if __name__ == '__main__':
 
     print('Calculating frictional resistance...')
     time.sleep(i)
-    gradient_slope = int(input(f'The angle gradient of your slope in degrees')) #Slope angle
-    f_slope = resistive_gradient(gradient_slope)
+    frictional_coefficient = int(input(f'The frictional coefficient between tires and road')) #Slope angle
+    f_f = resistive_friction(gradient_slope, frictional_coefficient)
     time.sleep(i)
-    print(f'The gradient resistance of your car is {f_slope} N)')
+    print(f'The frictional resistance of your car is {f_f} N)')
     time.sleep(i)
 
+    print('Calculating air drag resistance...')
+    time.sleep(i)
+    car_height= 1.5
+    car_width =1.5 #in m
+
+    frontal_area = car_height * car_width#Slope angle
+
+    air_density = 1,27554 #Air density
+
+    drag_coeff = 1.05 #block shape
+
+    wind_speed= int(input(f'The wind speed in kmh'))*3.6 #wind speed in ms
+
+    f_drag = resistive_drag(air_density, drag_coeff ,frontal_area)
+    time.sleep(i)
+    print(f'The frictional resistance of your car is {f_drag} N)')
+    time.sleep(i)
 
 
