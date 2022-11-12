@@ -73,4 +73,5 @@ def resistive_drag(rho, c_d, frontal_area, v_car = 10):
 
 
 if __name__ == '__main__':
+    print('Startint script...')
     
