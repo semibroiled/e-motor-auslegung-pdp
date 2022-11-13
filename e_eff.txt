@@ -1,0 +1,17 @@
+
+            The individual forces are:
+
+            Inertial force = 4400.0
+
+            Frictional force = 18108.841740527998
+
+            Drag force = 1291.4842499999997 
+
+            Slope resistance = 11741.063615214378
+
+
+            The total force is:
+
+            Total Force = F_inertia + F_friction + F_drag + F_slope = NoneNoneNoneNone = 23800.325990528
+            
+            
